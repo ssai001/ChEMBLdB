@@ -60,54 +60,34 @@ dbDisconnect(mydb)
 
 
 
-#Write functions so that user can query database. #Also need to write function for overlaps
+#Write functions so that user can query database. 
 library(RSQLite)
 mydb <- dbConnect(SQLite(), dbname= "drugbank_5.1.0.db")
 dbListTables(mydb)
 
 getAnnotation <- function(ChEMBLnames) {
-  dbGetQuery(mydb, paste0("SELECT CHEMBL_ID, 
-                          SYNONYMS, 
-                          DEVELOPMENT_PHASE, 
-                          FIRST_APPROVAL, 
-                          DRUG_TYPE, 
-                          CHIRALITY, 
-                          ORAL, 
-                          PARENTERAL, 
-                          AVAILABILITY_TYPE,
-                          MOLECULE_NAME, 
-                          MOLECULE_TYPE, 
-                          MECHANISM_OF_ACTION, 
-                          MECHANISM_COMMENT, 
-                          SELECTIVITY_COMMENT, 
-                          TARGET_CHEMBL_ID, 
-                          TARGET_NAME, 
-                          ACTION_TYPE, 
-                          ORGANISM, 
-                          TARGET_TYPE, 
-                          MECHANISM_REFS 
-                          FROM ChEMBLdB WHERE MOLECULE_NAME =='", ChEMBLnames, "';"))
+  dbGetQuery(mydb, paste0("SELECT * FROM ChEMBLdB WHERE MOLECULE_NAME =='", ChEMBLnames, "';"))
 }
-print(paste("cHEMBL_ID:", unique(getAnnotation('Bremelanotide')[1]), 
-            "SYNONYMS:", unique(getAnnotation('Bremelanotide')[2]), 
-            "DEVELOPMENTAL_PHASE:", unique(getAnnotation('Bremelanotide')[3]), 
-            "FIRST_APPROVAL:", unique(getAnnotation('Bremelanotide')[4]), 
-            "DRUG_TYPE:", unique(getAnnotation('Bremelanotide')[5]), 
-            "CHIRALITY:", unique(getAnnotation('Bremelanotide')[6]), 
-            "ORAL:", unique(getAnnotation('Bremelanotide')[7]), 
-            "PARENTERAL:", unique(getAnnotation('Bremelanotide')[8]), 
-            "AVAILABILITY_TYPE:", unique(getAnnotation('Bremelanotide')[9]),
-            "MOLECULE_NAME:", unique(getAnnotation('Bremelanotide')[10]),
-            "MOLECULE_TYPE:", unique(getAnnotation('Bremelanotide')[11]), 
-            "MECHANISM_OF_ACTION:", unique(getAnnotation('Bremelanotide')[12]), 
-            "MECHANISM_COMMENT:", unique(getAnnotation('Bremelanotide')[13]), 
-            "SELECTIVITY_COMMENT:", unique(getAnnotation('Bremelanotide')[14]), 
-            "TARGET_CHEMBL_ID:", unique(getAnnotation('Bremelanotide')[15]), 
-            "TARGET_NAME:", unique(getAnnotation('Bremelanotide')[16]), 
-            "ACTION_TYPE:", unique(getAnnotation('Bremelanotide')[17]), 
-            "ORGANISM:", unique(getAnnotation('Bremelanotide')[18]), 
-            "TARGET_TYPE:", unique(getAnnotation('Bremelanotide')[19]),
-            "MECHANISM_REFS:", unique(getAnnotation('Bremelanotide')[20])))
+cat(paste("cHEMBL_ID:", unique(getAnnotation('Bremelanotide')[1]), "\n", 
+          "SYNONYMS:", unique(getAnnotation('Bremelanotide')[2]), "\n",
+          "DEVELOPMENTAL_PHASE:", unique(getAnnotation('Bremelanotide')[3]), "\n",
+          "FIRST_APPROVAL:", unique(getAnnotation('Bremelanotide')[4]), "\n", 
+          "DRUG_TYPE:", unique(getAnnotation('Bremelanotide')[5]), "\n",
+          "CHIRALITY:", unique(getAnnotation('Bremelanotide')[6]), "\n",
+          "ORAL:", unique(getAnnotation('Bremelanotide')[7]), "\n",
+          "PARENTERAL:", unique(getAnnotation('Bremelanotide')[8]), "\n",
+          "AVAILABILITY_TYPE:", unique(getAnnotation('Bremelanotide')[9]), "\n",
+          "MOLECULE_NAME:", unique(getAnnotation('Bremelanotide')[10]), "\n",
+          "MOLECULE_TYPE:", unique(getAnnotation('Bremelanotide')[11]), "\n",
+          "MECHANISM_OF_ACTION:", unique(getAnnotation('Bremelanotide')[12]), "\n",
+          "MECHANISM_COMMENT:", unique(getAnnotation('Bremelanotide')[13]), "\n",
+          "SELECTIVITY_COMMENT:", unique(getAnnotation('Bremelanotide')[14]), "\n",
+          "TARGET_CHEMBL_ID:", unique(getAnnotation('Bremelanotide')[15]), "\n",
+          "TARGET_NAME:", unique(getAnnotation('Bremelanotide')[16]), "\n",
+          "ACTION_TYPE:", unique(getAnnotation('Bremelanotide')[17]), "\n",
+          "ORGANISM:", unique(getAnnotation('Bremelanotide')[18]), "\n",
+          "TARGET_TYPE:", unique(getAnnotation('Bremelanotide')[19]), "\n",
+          "MECHANISM_REFS:", unique(getAnnotation('Bremelanotide')[20])))
 dbDisconnect(mydb)
 
 
