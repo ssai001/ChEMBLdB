@@ -86,32 +86,7 @@ call dbDisconnect() when finished working with a connection
 > dim(dbGetQuery(db, "SELECT * FROM ChEMBLdB"))
 [1] 24453342       53
 > 
-> 
-> 
-> #Write querying function based on assay_id
-> 
-> 
-> 
-> #Write querying function based on doc_id
-> 
-> 
-> 
-> #Write querying function based on record_id
-> 
-> 
-> 
-> #Write querying function based on molregno
-> 
-> 
-> 
-> #Write querying function based on chembl_id
-> 
-> 
-> 
-> 
-> 
-> 
-> 
+
 > proc.time()
     user   system  elapsed 
 1248.032  293.118 1551.449 
